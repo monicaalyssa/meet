@@ -1,26 +1,24 @@
 # User Stories & Test Scenarios
 ### Feature 1: Filter Events by City
 
-As a `user`,
-I should be able to `filter events by city`
-So that `I can see a list of events taking place in that city.`
+As a `user`, I should be able to `filter events by city` so that `I can see a list of events taking place in that city.`
 
 ```
-**Scenario 1: When user hasn’t searched for a specific city, show upcoming events from all cities.**
+Scenario 1: When user hasn’t searched for a specific city, show upcoming events from all cities.
 
 - Given user hasn’t searched for any city
 - When the user opens the app
 - Then the user should see a list of upcoming events.
 ```
 ```
-**Scenario 2: User should see a list of suggestions when they search for a city.**
+Scenario 2: User should see a list of suggestions when they search for a city.
 
 - Given the main page is open
 - When user starts typing in the city textbox
 - Then the user should receive a list of cities (suggestions) that match what they’ve typed.
 ```
 ```
-**Scenario 3: User can select a city from the suggested list.**
+Scenario 3: User can select a city from the suggested list.
 
 - Given user was typing “Miami” in the city textbox AND the list of suggested cities is showing
 - When the user selects a city (e.g., “Miami, Florida) from the list
@@ -28,28 +26,28 @@ So that `I can see a list of events taking place in that city.`
 ```
 ### Feature 2: Show/Hide Event Details 
 
-As a user,
-I should be able to collapse or show event details
-So that I can get more information about a specific event.
+As a `user`, I should be able to `collapse or show event details` so that `I can get more information about a specific event.`
 
+```
 Scenario 1: An event element is collapsed by default. 
 
 Given the user is on the upcoming events page
 When the user views a list of different upcoming events
 Then the events should be collapsed by default AND the user should be given the option to show a specific events details
-
+```
+```
 Scenario 2: User can expand an event to see details. 
 
 Given the user is on the upcoming events page
 When the user clicks on expand details
 Then the user should given more information on the event AND should be given the option to hide details
-
+```
+```
 Scenario 3: User can collapse an event to hide details. 
 Given the user expands a specific events details
 When the user clicks on the collapse option
 Then the event element should hide additional details AND should be given the option to show details again
-
-
+```
 ### Feature 3: Specify Number of Events 
 
 As a user,
