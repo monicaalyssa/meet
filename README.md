@@ -50,63 +50,59 @@ Then the event element should hide additional details AND should be given the op
 ```
 ### Feature 3: Specify Number of Events 
 
-As a user,
-I should be able to change the number of events displayed
-So that I can get a list of a specific number of events.
+As a `user`, I should be able to `change the number of events displayed` so that `I can get a list of a specific number of events.`
 
+```
 Scenario 1: When user hasn’t specified a number, 32 events are shown by default. 
 
 Given the user is on the upcoming events page
 When the user hasn’t specific a number of events to display
 Then the list of events should be 32 events shown by default
-
+```
+```
 Scenario 2: User can change the number of events displayed. 
 
 Given the user is on the upcoming events page
 When the user selects a different number of events to display
 Then the list of events should change to display the number of events the user has selected
-
-
+```
 ### Feature 4: Use the App When Offline 
 
-As a user,
-I should be able to use the app offline
-So that I can get still get a list of upcoming events when I am not connected to the internet.
+As a `user`, I should be able to `use the app offline` so that `I can get still get a list of upcoming events when I am not connected to the internet.`
 
+```
 Scenario 1: Show cached data when there’s no internet connection. 
 
 Given the user is viewing the upcoming events page
 When the user has no internet connection
 Then the list of events should still be shown using the most recent cached data AND the user should seen a message indicating data is still being shown offline
-
+```
+```
 Scenario 2: Show error when user changes search settings (city, number of events). 
 
 Given the user tries to edit the search filter
 When the user has no internet connection
 Then the user should receive an error stating that they are offline AND this action can not be performed with no internet connection
-
-
+```
 ### Feature 5: Add an App Shortcut to the Home Screen 
 
-As a user,
-I should be able to add the app to my home screen
-So that I can easily access the app as a shortcut from my home screen.
+As a `user`, I should be able to `add the app to my home screen` so that `I can easily access the app as a shortcut from my home screen.`
 
+```
 Scenario 1: User can install the meet app as a shortcut on their device home screen. 
 
 Given the user is on the meet app in their web browser
 When the user adds the app as a shortcut on their device
 Then the user should have a shortcut icon on their home screen to access the meet app
-
-
+```
 ### Feature 6: Display Charts Visualizing Event Details 
 
-As a user,
-I should be able to display charts with event details
-So that I can easily visualize and understand event data. 
+As a `user`, I should be able to `display charts with event details` so that `I can easily visualize and understand event data.`
 
+```
 Scenario 1: Show a chart with the number of upcoming events in each city.
 
 Given the user is on the upcoming events page
 When the user clicks on display chart details
 Then the user should see a pie chart visualizing the popularity of event genres and a scatterplot showing how many events will take place in each location
+```
