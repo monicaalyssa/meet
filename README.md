@@ -43,7 +43,8 @@ When the user clicks on expand details
 Then the user should given more information on the event AND should be given the option to hide details
 ```
 ```
-Scenario 3: User can collapse an event to hide details. 
+Scenario 3: User can collapse an event to hide details.
+
 Given the user expands a specific events details
 When the user clicks on the collapse option
 Then the event element should hide additional details AND should be given the option to show details again
