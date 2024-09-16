@@ -1,16 +1,28 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
-import mockData from './mock-data';
+import { getEvents } from './api';
 
 function App() {
-  const mockDataEvents = mockData;
+  const [events, setEvents] = useState([]);
+  const [currentNOE, setCurrentNOE] = useState(32);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const allEvents = await getEvents();
+    setEvents(allEvents.slice(0, currentNOE));
+  }
+
   return (
     <div className="App">
       <CitySearch />
       <NumberOfEvents />
-      <EventList events={mockDataEvents} key={mockDataEvents.id}/>
+      <EventList events={events}/>
     </div>
   );
 }
