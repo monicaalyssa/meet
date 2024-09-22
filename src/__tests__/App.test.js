@@ -28,8 +28,8 @@ describe('<App /> integration', () => {
         const AppComponent = render(<App />);
         const AppDOM = AppComponent.container.firstChild;
         
-        const citySearchDOM = AppDOM.querySelector('#city-search');
-        const citySearchInput = within(CitySearchDOM).queryByRole('textbox');
+        const CitySearchDOM = AppDOM.querySelector('#city-search');
+        const CitySearchInput = within(CitySearchDOM).queryByRole('textbox');
 
         await user.type(CitySearchInput, "Berlin");
         const berlinSuggestionItem = within(CitySearchDOM).queryByText('Berlin, Germany');
