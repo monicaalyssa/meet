@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
+import { render, within } from "@testing-library/react";
 import NumberOfEvents from "../components/NumberOfEvents";
 import userEvent from "@testing-library/user-event";
+import { getEvents } from "../api";
 
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
@@ -23,6 +24,21 @@ describe('<NumberOfEvents /> component', () => {
         const numberTextBox = NumberOfEventsComponent.queryByRole('textbox');
         await user.type(numberTextBox, "1");
         expect(numberTextBox).toHaveValue("321");
+    });
+});
+
+describe('<NumberOfEvents /> integration', () => {
+    test('Renders a list of events matching the input of by the user', async () => {
+        const setCurrentNOE = 32;
+        const NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={setCurrentNOE} />);
+        const NumberOfEventsInput =  NumberOfEventsComponent.queryByRole('textbox')
+
+        const user = userEvent.setup();
+        await user.type(NumberOfEventsInput, "{backspace}{backspace}10");
+
+        const allEvents = await getEvents();
+        NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={setCurrentNOE} />)
+        expect(NumberOfEventsInput).toHaveValue("10");
     });
 });
 
