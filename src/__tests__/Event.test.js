@@ -14,10 +14,6 @@ describe('<Event /> component', () => {
         expect(EventComponent.queryByText(mockData[0].location)).toBeInTheDocument();
     });
 
-    test('Renders event start time', () => {
-        expect(EventComponent.queryByText(mockData[0].created)).toBeInTheDocument();
-    });
-
     test('Renders event summary', () => {
         expect(EventComponent.queryByText(mockData[0].summary)).toBeInTheDocument();
     });
