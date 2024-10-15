@@ -6,7 +6,7 @@ import { getEvents } from "../api";
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        NumberOfEventsComponent = render(<NumberOfEvents setErrorAlert={() => { }}/>);
     });
 
     test('Has an element with the "textbox" role', () => {
@@ -30,14 +30,14 @@ describe('<NumberOfEvents /> component', () => {
 describe('<NumberOfEvents /> integration', () => {
     test('Renders a list of events matching the input of by the user', async () => {
         const setCurrentNOE = 32;
-        const NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={setCurrentNOE} />);
+        const NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={() => { }}/>);
         const NumberOfEventsInput =  NumberOfEventsComponent.queryByRole('textbox')
 
         const user = userEvent.setup();
         await user.type(NumberOfEventsInput, "{backspace}{backspace}10");
 
         const allEvents = await getEvents();
-        NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={setCurrentNOE} />)
+        NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={() => { }}/>)
         expect(NumberOfEventsInput).toHaveValue("10");
     });
 });

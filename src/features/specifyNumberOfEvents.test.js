@@ -30,7 +30,7 @@ defineFeature(feature,  test => {
 
         beforeEach(() => {
             user = userEvent.setup();
-            NumberOfEventsComponent = render(<NumberOfEvents />);
+            NumberOfEventsComponent = render(<NumberOfEvents setErrorAlert={() => { }}/>);
             numberDOM = NumberOfEventsComponent.container.querySelector('#number-of-events');
             numberTextBox = numberDOM.querySelector('input[type="text"]');
         });
