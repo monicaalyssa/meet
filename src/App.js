@@ -45,7 +45,9 @@ function App() {
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert}/>
       <NumberOfEvents setCurrentNOE={setCurrentNOE} onChangeNOE={handleNOEChange} setErrorAlert={setErrorAlert} />
-      <CityEventsChart allLocations={allLocations} events={events}/>
+      <div className='charts-container'>
+        <CityEventsChart allLocations={allLocations} events={events}/>
+      </div>
       <EventList events={events}/>
     </div>
   );
