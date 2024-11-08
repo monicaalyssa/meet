@@ -7,7 +7,6 @@ import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alerts';
 import CityEventsChart from './components/CityEventsChart';
 import EventGenresChart from './components/EventGenresChart';
 import './App.css';
-import Loader from './components/Loader';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -48,21 +47,13 @@ function App() {
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
         {warningAlert.length ? <WarningAlert text={warningAlert}/> : null}
       </div>
-      {loading ? (
-        <div className="loading-container">
-          <Loader></Loader><p>Loading events...</p>
-        </div>
-      ) : (
-        <>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert}/>
       <NumberOfEvents setCurrentNOE={setCurrentNOE} onChangeNOE={handleNOEChange} setErrorAlert={setErrorAlert} />
       <div className='charts-container'>
         <CityEventsChart allLocations={allLocations} events={events}/>
         <EventGenresChart events={events}/>
       </div>
-      <EventList events={events}/>
-      </>
-      )}
+      <EventList events={events} loading={loading}/>
     </div>
   );
 }

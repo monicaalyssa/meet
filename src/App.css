@@ -102,6 +102,11 @@ input[type="number"] {
   grid-template-columns: 1fr 1fr;
 }
 
+.loading-container {
+  margin-top: 2.3rem;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   .charts-container {
     grid-template-columns: 1fr;
