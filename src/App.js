@@ -7,6 +7,7 @@ import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alerts';
 import CityEventsChart from './components/CityEventsChart';
 import EventGenresChart from './components/EventGenresChart';
 import './App.css';
+import Loader from './components/Loader';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -16,6 +17,7 @@ function App() {
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
   const [warningAlert, setWarningAlert] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!navigator.onLine) {
@@ -27,10 +29,12 @@ function App() {
   }, [currentCity, currentNOE]);
 
   const fetchData = async () => {
+    setLoading(true)
     const allEvents = await getEvents();
     const filteredEvents = currentCity === "See all cities" ? allEvents : allEvents.filter(event => event.location === currentCity)
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
+    setLoading(false);
   }
 
   const handleNOEChange = (newNOE) => {
@@ -44,6 +48,12 @@ function App() {
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
         {warningAlert.length ? <WarningAlert text={warningAlert}/> : null}
       </div>
+      {loading ? (
+        <div className="loading-container">
+          <Loader></Loader><p>Loading events...</p>
+        </div>
+      ) : (
+        <>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert}/>
       <NumberOfEvents setCurrentNOE={setCurrentNOE} onChangeNOE={handleNOEChange} setErrorAlert={setErrorAlert} />
       <div className='charts-container'>
@@ -51,6 +61,8 @@ function App() {
         <EventGenresChart events={events}/>
       </div>
       <EventList events={events}/>
+      </>
+      )}
     </div>
   );
 }
