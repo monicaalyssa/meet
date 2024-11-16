@@ -1,4 +1,4 @@
-# Meet
+# Meet <a name="top"></a>
 Meet is a serverless, PWA web application built in React that allows users to search for upcoming events near their local city.
 
 ## Features ✨
@@ -196,3 +196,6 @@ No screenshots yet
 <a href="https://cucumber.io/">Cucumber</a>: Testing framework for writing acceptance testing in Gherkin syntax.
 
 <a href="https://pptr.dev/">Puppeteer</a>: End-to-end testing library for automating the browser.
+
+##
+[Back to top](#top)
