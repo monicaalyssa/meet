@@ -1,5 +1,5 @@
 # Meet <a name="top"></a>
-Meet is a serverless, PWA web application built in React that allows users to search for upcoming events near their local city.
+Meet is a serverless, PWA web application built in React that allows users to search for upcoming events in different cities.
 
 ## Features ✨
 
