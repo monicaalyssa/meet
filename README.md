@@ -163,15 +163,6 @@ Then the user should see a pie chart visualizing the popularity of event genres 
 
 </details>
 
-
-## Screenshots 🎞 
-<details>
-<summary>View app preview</summary>
-
-
-No screenshots yet
-</details>
-
 ## Technologies & Dependencies 🛠️
 ### Frontend
 <a href="https://reactnative.dev/">React</a>: A JavaScript library to create user interface components. This application integrates object-oriented programming principles for handling warning messages, as well as loop and state management for the events list.
@@ -196,6 +187,10 @@ No screenshots yet
 <a href="https://cucumber.io/">Cucumber</a>: Testing framework for writing acceptance testing in Gherkin syntax.
 
 <a href="https://pptr.dev/">Puppeteer</a>: End-to-end testing library for automating the browser.
+
+## Demo 🎥
+
+https://github.com/user-attachments/assets/a57406f6-1ac2-422a-8db2-c9095b296309
 
 ##
 [Back to top](#top)
