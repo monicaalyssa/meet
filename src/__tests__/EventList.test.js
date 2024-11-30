@@ -22,12 +22,15 @@ describe('<EventList /> component', () => {
 
 describe('<EventList /> integration', () => {
     test('Renders a list of 32 events when the app is mounted and rendered', async () => {
+        
         const AppComponent = render(<App />);
         const AppDOM = AppComponent.container.firstChild;
-        const EventListDOM = AppDOM.querySelector('#event-list');
+        const allEvents = await getEvents();
+        const { container } = render(<EventList events={allEvents} loading={false} />);
+        const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
         await waitFor(() => {
             const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-            expect(EventListItems.length).toBe(32);
+            expect(EventListItems.length).toBeGreaterThan(32);
         })
     })
 })

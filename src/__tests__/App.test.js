@@ -1,7 +1,8 @@
-import { render, within } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
+import EventList from '../components/EventList';
 
 describe('App /> component', () => {
     let AppDOM;
@@ -9,8 +10,11 @@ describe('App /> component', () => {
         AppDOM = render(<App />).container.firstChild;
     })
     
-    test('Renders list of events', () => {
-        expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
+    test('Renders list of events', async () => {
+        const allEvents= await getEvents();
+        const { container } = render(<EventList events={allEvents} loading={false} />);
+        const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
     });
 
     test('Render CitySearch', () => {

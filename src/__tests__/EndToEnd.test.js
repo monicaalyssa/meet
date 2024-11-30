@@ -6,7 +6,7 @@ describe('Show/hide an event details', () => {
 
     beforeAll(async () => {
         browser = await puppeteer.launch({
-            headless: false,
+            headless: true,
             slowMo: 250, 
             timeout: 0 
         });        

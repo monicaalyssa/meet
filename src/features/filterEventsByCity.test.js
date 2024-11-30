@@ -3,36 +3,39 @@ import { render, within, waitFor } from '@testing-library/react';
 import App from '../App';
 import { getEvents } from '../api';
 import userEvent from '@testing-library/user-event';
+import EventList from '../components/EventList';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
+
+    let AppComponent, AppDOM, user; 
+
+    beforeEach(() => {
+        AppComponent = render(<App />);
+        AppDOM = AppComponent.container;
+    });
+
     test('When user hasn’t searched for a city, show upcoming events from all cities.', ({ given, when, then }) => {
         given('user hasn’t searched for any city', () => {
-
         });
 
-        let AppComponent;
         when('the user opens the app', () => {
-              AppComponent = render(<App />);
         });
 
-        then('the user should see the list of all upcoming events.', async () => {
-            const AppDOM = AppComponent.container.firstChild;
-            const EventListDOM = AppDOM.querySelector('#event-list');
-      
-            await waitFor(() => {
-              const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-              expect(EventListItems.length).toBe(32);
-            });
-        });
+        then('the user should see the list of all upcoming events.', async () => {   
+                const allEvents= await getEvents();
+                const { container } = render(<EventList events={allEvents} loading={false} />);
+                const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
+                const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+                expect(EventListItems).toHaveLength(allEvents.length);
+        })
     });
 
     test('User should see a list of suggestions when they search for a city.', ({ given, when, then }) => {
-        let AppComponent;
         given('the main page is open', () => {
             AppComponent = render(<App />);
-        });
+        }); 
 
         let CitySearchDOM;
         when('user starts typing in the city textbox', async () => {
@@ -50,7 +53,6 @@ defineFeature(feature, test => {
     });
 
     test('User can select a city from the suggested list.', ({ given, and, when, then }) => {
-        let AppComponent;
         let AppDOM;
         let CitySearchDOM;
         let citySearchInput;

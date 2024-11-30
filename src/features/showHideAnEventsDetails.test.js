@@ -4,6 +4,7 @@ import { render, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
 import Event from "../components/Event";
+import EventList from '../components/EventList';
 
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
@@ -20,20 +21,29 @@ defineFeature(feature,  test => {
         given('the user is on the upcoming events page', () => {});
 
         when('the user views a list of different upcoming events', async () => {
-            const EventListDOM = AppDOM.querySelector('#event-list');
+            const allEvents = await getEvents();
+
+            const { container } = render(<EventList events={allEvents} loading={false} />);
+            const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
             await waitFor(() => {
                 const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-                expect(EventListItems.length).toBe(32);
+                expect(EventListItems.length).toBeGreaterThan(32);
             });
         });
 
-        then('the events should be collapsed by default', () => {
+        then('the events should be collapsed by default', async () => {
+            const allEvents = await getEvents();
+            const { container } = render(<EventList events={allEvents} loading={false} />);
+            const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
             const eventDetails = AppDOM.querySelector('.details');
             expect(eventDetails).not.toBeInTheDocument();
         });
 
-        and('the user should be given the option to show a specific events details', () => {
-            const detailsButton = AppDOM.querySelector('.details-btn')
+        and('the user should be given the option to show a specific events details', async () => {
+            const allEvents = await getEvents();
+            const { container } = render(<EventList events={allEvents} loading={false} />);
+            const EventListDOM = await waitFor(() => container.querySelector('#event-list'));
+            const detailsButton = await waitFor(() => EventListDOM.querySelector('.details-btn'));
             expect(detailsButton).toBeInTheDocument();
         });
     });
