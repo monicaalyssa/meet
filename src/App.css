@@ -80,6 +80,10 @@ input[type="number"] {
   
 }
 
+.details {
+  margin-top: 15px
+}
+
 .details-btn {
   padding: 10px 16px;
   border-radius: 4px;

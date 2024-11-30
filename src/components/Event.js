@@ -28,7 +28,7 @@ const timeFormat = (timeInput) => {
        <button className="details-btn" onClick={() => setShowDetails(prev => !prev)}>{showDetails ? 'Hide details' : 'Show details'}</button>
       {showDetails && (
       <div className="details">
-        <p>Details go here</p>
+        <p>{event.description}</p>
       </div>
       )}
        <br></br>
