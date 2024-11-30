@@ -77,11 +77,12 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-  
 }
 
 .details {
-  margin-top: 15px
+  margin-top: 15px;
+  width: 65vw;
+  margin: 15px auto 0;
 }
 
 .details-btn {
